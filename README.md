@@ -55,7 +55,7 @@ All default value should be ok.
 Default IP parameters used for Azure Vnet, subnets and network interfaces are used by the bootstrap.xml configuration file.
 If you change it, you PAN-OS configuration has to be modified as well.  
 
-[<img src="http://azuredeploy.net/deploybutton.png"/>](https://portal.azure.com/#create/Microsoft.Template/uri/https://github.com/cestebanez91/Azure-VmSeries-Fast-HA/blob/main/azureDeploy.json)
+[<img src="http://azuredeploy.net/deploybutton.png"/>](https://raw.githubusercontent.com/cestebanez91/Azure-VmSeries-Fast-HA/main/azureDeploy.json)
 
 
 # Support Policy
