@@ -12,8 +12,6 @@ The goal of this design is to propose a VM-Series high availability mechanism wh
 - Session synchronization is enabled.
 - Source NAT is not needed for any traffic use case, specifically inbound traffic
 
-
-
 ## Template Details
 - Authoring Group: Public Cloud, Networking, High availability
 - Documentation: Azure VM-Series Fast HA.pdf
@@ -22,20 +20,20 @@ The goal of this design is to propose a VM-Series high availability mechanism wh
 - Cloud Provider(s) Supported:  Azure only dedicated
 
 
-## Diagram
+
+# Diagram and content
 ![alt text](https://github.com/cestebanez91/Azure-VmSeries-Fast-HA/blob/main/AzureFastHAdiagram.png)
 
 
 ## Content is the following:
--	azureDeploy.json files
-This file is a **customized version** of Matt McLimans original template available here:
-https://github.com/wwce/azure-arm/tree/master/Azure-Common-Deployments/v1/2fw_3nic_avset_intlb_extlb
-See details for options (licensing mode, new Vnet, AV Set, default credentials, etc..).
+-	azureDeploy.json  This file is a **customized version** of Matt McLimans original template available here:  
+https://github.com/wwce/azure-arm/tree/master/Azure-Common-Deployments/v1/2fw_3nic_avset_intlb_extlb  
+See details for options (licensing mode, new Vnet, AV Set, default credentials, etc..).  
 Bootstrapping option will be used to configure VM-Series HA cluster with the below package.
 
-- PAN-OS bootstrap packages for VM1 and VM2 as they have a different initial configuration
-VM1 and VM2 directories and file are in bootstrap zip archive too.
-Only init-cfg.txt and bootstrap.xml files are needed and used.
+- PAN-OS bootstrap packages for VM1 and VM2 as they have a different initial configuration.  
+VM1 and VM2 directories and file are in bootstrap zip archive too.  
+Only init-cfg.txt and bootstrap.xml files are needed and used.  
 You can use your license authcode is licensing directory.
 
 ## Default Username and password
