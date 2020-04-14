@@ -1,10 +1,10 @@
 # Azure VM-Series HA cluster fast failover
-Azure template and PAN-OS bootstrap package to deploy an Active/Passive HA cluster for VM-Series in Microsoft Azure
+Azure template and PAN-OS bootstrap package to deploy an Active/Passive HA cluster for VM-Series in Microsoft Azure with fast failover.
 
 ## Brief Description
-This repository proposes an Azure ARM template that will deploy a pair of VM-Series.
-This pair of VM-Series is automatically configured as an active/passive HA cluster with a specific configuration.
-An inbound public load balancer and an internal outbound load balancer are deployed to ensure failover mechanism.
+This repository proposes an Azure ARM template that will deploy a pair of VM-Series.  
+This pair of VM-Series is automatically configured as an active/passive HA cluster with a specific configuration.  
+An inbound public load balancer and an internal outbound load balancer are deployed to ensure failover mechanism.  
 A Linux instance with preconfigured Apache web server is deployed and matching PAN-OS security rules and NAT rules are setup in VM-Series.
 
 The goal of this design is to propose a VM-Series high availability mechanism where:
@@ -35,15 +35,16 @@ Bootstrapping option will be used to configure VM-Series HA cluster with the bel
 - PAN-OS bootstrap packages for VM1 and VM2 as they have a different initial configuration.  
 VM1 and VM2 directories and file are in bootstrap zip archive too.  
 Only init-cfg.txt and bootstrap.xml files are needed and used.  
-You can use your license authcode is licensing directory.
+You can use your license authcode in licensing directory.
 
 ## Default Username and password
 Default username and password for both VM-Series and Linux instance are **paloalto/paloalto123!**
 
-#Deployment
+# Deployment
 All default value should be ok.
 Default IP parameters used for Azure Vnet, subnets and network interfaces are used by the bootstrap.xml configuration file.
 If you change it, you PAN-OS configuration has to be modified as well.  
+
 [<img src="http://azuredeploy.net/deploybutton.png"/>](https://portal.azure.com/#create/Microsoft.Template/uri/https://github.com/cestebanez91/Azure-VmSeries-Fast-HA/blob/main/azureDeploy.json)
 
 
