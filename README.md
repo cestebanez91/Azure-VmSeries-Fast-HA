@@ -10,7 +10,7 @@ A Linux instance with preconfigured Apache web server is deployed and matching P
 The goal of this design is to propose a VM-Series high availability mechanism where:
 - Failover is fast within a VM-Series HA cluster.
 - Session synchronization is enabled.
-- Source NAT is not needed for any traffic use case, specifically inbound traffic
+- Source NAT is not needed for any traffic use case, specifically inbound traffic.
 
 ## Template Details
 - Authoring Group: Public Cloud, Networking, High availability
@@ -39,6 +39,16 @@ You can use your license authcode in licensing directory.
 
 ## Default Username and password
 Default username and password for both VM-Series and Linux instance are **paloalto/paloalto123!**
+
+## Session synchronization behavior
+VM-Series are configured as a HA cluster, session synchronization is enabled.  
+However, when primary VM-Series is lost and secondary VM-series becomes active, existing session are active on the new node but traffic is not passing through.  
+This is due to the basic behavior of Azure Load balancer which is not balancing traffic per packet but per session.  
+Once a session is initiated and use one of the VM-Series, the session is still sent to this VM-Series, whatever the health probe status.  
+So session synchronization is not really usefull, except if your application is able to reinitiate the session with the corresponding session id.  
+When primary node is back to active state (and the session did not reach the Load balancer time out), packets of an existing session can pass the first VM-Series (with a ssh session for example) because session is synchronized.  
+By the way, Preemtive flag is not enabled in the HA cluster configuration by default.
+
 
 # Deployment
 All default value should be ok.
