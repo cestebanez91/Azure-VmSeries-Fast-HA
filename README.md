@@ -26,7 +26,8 @@ The goal of this design is to propose a VM-Series high availability mechanism wh
 
 
 ## Content is the following:
--	azureDeploy.json  This file is a **customized version** of Matt McLimans original template available here:  
+-	azureDeploy.json  
+This file is a **customized version** of Matt McLimans original template available here:  
 https://github.com/wwce/azure-arm/tree/master/Azure-Common-Deployments/v1/2fw_3nic_avset_intlb_extlb  
 See details for options (licensing mode, new Vnet, AV Set, default credentials, etc..).  
 Bootstrapping option will be used to configure VM-Series HA cluster with the below package.
@@ -37,8 +38,13 @@ Only init-cfg.txt and bootstrap.xml files are needed and used.
 You can use your license authcode is licensing directory.
 
 ## Default Username and password
-Default username and password for both VM-Series and Linux instance azure
-**paloalto/paloalto123!**
+Default username and password for both VM-Series and Linux instance are **paloalto/paloalto123!**
+
+#Deployment
+All default value should be ok.
+Default IP parameters used for Azure Vnet, subnets and network interfaces are used by the bootstrap.xml configuration file.
+If you change it, you PAN-OS configuration has to be modified as well.  
+[<img src="http://azuredeploy.net/deploybutton.png"/>](https://portal.azure.com/#create/Microsoft.Template/uri/https://github.com/cestebanez91/Azure-VmSeries-Fast-HA/blob/main/azureDeploy.json)
 
 
 # Support Policy
