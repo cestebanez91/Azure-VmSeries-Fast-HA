@@ -22,7 +22,7 @@ The goal of this design is to propose a VM-Series high availability mechanism wh
 
 
 # Diagram and content
-![alt text](https://github.com/cestebanez91/Azure-VmSeries-Fast-HA/blob/main/AzureFastHAdiagram.png)
+![alt text](https://github.com/cestebanez91/Azure-VmSeries-Fast-HA/blob/master/AzureFastHAdiagram.png)
 
 
 ## Content is the following:
@@ -55,7 +55,7 @@ All default value should be ok.
 Default IP parameters used for Azure Vnet, subnets and network interfaces are used by the bootstrap.xml configuration file.
 If you change it, you PAN-OS configuration has to be modified as well.  
 
-[<img src="http://azuredeploy.net/deploybutton.png"/>](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fcestebanez91%2FAzure-VmSeries-Fast-HA%2Fmain%2FazureDeploy.json)
+[<img src="http://azuredeploy.net/deploybutton.png"/>](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fcestebanez91%2FAzure-VmSeries-Fast-HA%2Fmaster%2FazureDeploy.json)
 
 
 # Support Policy
