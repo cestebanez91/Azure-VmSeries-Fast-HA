@@ -67,7 +67,7 @@
     },
     "fW1-IPHA2": {
       "value": "10.0.2.9"
-    },	
+    },
     "fW2-Name": {
       "value": "vmseries-ha-secondary"
     },
@@ -122,22 +122,22 @@
     "password": {
       "value": null
     },
-    "(opt.) BootstrapStorageAccount": {
+    "BootstrapStorageAccount": {
       "value": ""
     },
-    "(opt.) BootstrapAccessKey": {
+    "BootstrapAccessKey": {
       "value": null
     },
-    "(opt.) BootstrapFileShareName": {
+    "BootstrapFileShareName": {
       "value": "bootstrap"
     },
-    "(opt.) BootstrapShareDirectoryVM1": {
+    "BootstrapShareDirectoryVM1": {
       "value": "VM1"
     },
-	"(opt.) BootstrapShareDirectoryVM2": {
+	"BootstrapShareDirectoryVM2": {
       "value": "VM2"
     },
-    "(opt.) AppendStringToResources": {
+    "AppendStringToResources": {
       "value": ""
     }
   }

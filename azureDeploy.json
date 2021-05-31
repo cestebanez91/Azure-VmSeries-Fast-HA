@@ -168,7 +168,7 @@
       "metadata": {
         "description": "Enter a private IP address for firewall-1's HA2 IP address."
       }
-    },	
+    },
     "FW2-Name": {
       "type": "string",
       "defaultValue": "vmseries-ha-secondary",
@@ -203,7 +203,7 @@
       "metadata": {
         "description": "Enter a private IP address for firewall-2's HA2 IP address."
       }
-    },	
+    },
     "licenseType": {
       "type": "string",
       "defaultValue": "byol",
@@ -338,42 +338,42 @@
         "description": "Enter the firewall's administrator password. This password will be used for Linux instance too. Password must be 12-72 characters and must have 3 of the following: 1 lower case character, 1 upper case character, 1 number, and 1 special character that is not slash or hyphen."
       }
     },
-    "(opt.) BootstrapStorageAccount": {
+    "BootstrapStorageAccount": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
         "description": "(Optional) To bootstrap the firewalls, enter the Azure storage account name that contains the bootstrap file share for both VM1 and VM2."
       }
     },
-    "(opt.) BootstrapAccessKey": {
+    "BootstrapAccessKey": {
       "type": "securestring",
       "defaultValue": "",
       "metadata": {
         "description": "(Optional) To bootstrap the firewalls, enter the Azure storage account access key."
       }
     },
-    "(opt.) BootstrapFileShareName": {
+    "BootstrapFileShareName": {
       "type": "string",
       "defaultValue": "bootstrap",
       "metadata": {
         "description": "(Optional) To bootstrap the firewalls, enter the name of the Azure storage account file share that contains the bootstrap configuration for both VM1 and VM2."
       }
     },
-    "(opt.) BootstrapShareDirectoryVM1": {
+    "BootstrapShareDirectoryVM1": {
       "defaultValue": "VM1",
       "type": "String",
       "metadata": {
         "description": "(Optional) Enter the subdirectory hosting the bootstrap files for VM1's running config file."
       }
     },
-	"(opt.) BootstrapShareDirectoryVM2": {
+	"BootstrapShareDirectoryVM2": {
       "defaultValue": "VM2",
       "type": "String",
       "metadata": {
         "description": "(Optional) Enter the subdirectory hosting the bootstrap files for VM2's running config file."
       }
     },
-    "(opt.) AppendStringToResources": {
+    "AppendStringToResources": {
       "type": "string",
       "defaultValue": "",
       "metadata": {
@@ -388,11 +388,11 @@
       }
 	 }
   },
- 
+
   "variables": {
     "COMMENT_global": "GLOBAL VARIABLES SHARED AMONG DEPLOYED RESOURCES",
     "global_var_resource_group": "[resourceGroup().name]",
-    "global_var_appendedString": "[if(equals(parameters('(opt.) AppendStringToResources'), ''), '', parameters('(opt.) AppendStringToResources'))]",
+    "global_var_appendedString": "[if(equals(parameters('AppendStringToResources'), ''), '', parameters('AppendStringToResources'))]",
     "global_var_idleTimeoutInMinutes": 4,
     "global_var_allocationMethod": "Static",
     "global_var_networkVersion": "IPv4",
@@ -415,8 +415,8 @@
     "global_fw_adminUsername": "[parameters('username')]",
     "global_fw_adminPassword": "[parameters('password')]",
     "global_fw_diskSizeGB": 60,
-	"global_fw_bootstrapVM1": "[concat('storage-account=', parameters('(opt.) BootstrapStorageAccount'), ',access-key=', parameters('(opt.) BootstrapAccessKey'), ',file-share=', parameters('(opt.) BootstrapFileShareName'), ',share-directory=', parameters('(opt.) BootstrapShareDirectoryVM1'))]",
-    "global_fw_bootstrapVM2": "[concat('storage-account=', parameters('(opt.) BootstrapStorageAccount'), ',access-key=', parameters('(opt.) BootstrapAccessKey'), ',file-share=', parameters('(opt.) BootstrapFileShareName'), ',share-directory=', parameters('(opt.) BootstrapShareDirectoryVM2'))]",
+	"global_fw_bootstrapVM1": "[concat('storage-account=', parameters('BootstrapStorageAccount'), ',access-key=', parameters('BootstrapAccessKey'), ',file-share=', parameters('BootstrapFileShareName'), ',share-directory=', parameters('BootstrapShareDirectoryVM1'))]",
+    "global_fw_bootstrapVM2": "[concat('storage-account=', parameters('BootstrapStorageAccount'), ',access-key=', parameters('BootstrapAccessKey'), ',file-share=', parameters('BootstrapFileShareName'), ',share-directory=', parameters('BootstrapShareDirectoryVM2'))]",
     "global_fw_publisher": "paloaltonetworks",
     "global_fw_license": "[parameters('licenseType')]",
     "global_fw_version": "[parameters('PANOSVersion')]",
@@ -495,7 +495,7 @@
     "fw1_interface0_ip": "[parameters('FW1-IPManagement')]",
     "fw1_interface1_ip": "[parameters('FW1-IPDataplane1')]",
     "fw1_interface2_ip": "[parameters('FW1-IPDataplane2')]",
-    "fw1_interface3_ip": "[parameters('FW1-IPHA2')]",	
+    "fw1_interface3_ip": "[parameters('FW1-IPHA2')]",
     "fw1_interface0_pip_name": "[take(replace(concat(parameters('FW1-Name'), '-nic0-pip', variables('global_var_appendedString')), ' ', ''), 80)]",
     "fw1_interface1_pip_name": "[take(replace(concat(parameters('FW1-Name'), '-nic1-pip', variables('global_var_appendedString')), ' ', ''), 80)]",
     "fw1_interface0_pip_id": { "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('fw1_interface0_pip_name'))]" },
@@ -510,19 +510,19 @@
 	"fw2_interface0_ip": "[parameters('FW2-IPManagement')]",
     "fw2_interface1_ip": "[parameters('FW2-IPDataplane1')]",
     "fw2_interface2_ip": "[parameters('FW2-IPDataplane2')]",
-    "fw2_interface3_ip": "[parameters('FW2-IPHA2')]",	
+    "fw2_interface3_ip": "[parameters('FW2-IPHA2')]",
     "fw2_interface0_pip_name": "[take(replace(concat(parameters('FW2-Name'),'-nic0-pip', variables('global_var_appendedString')), ' ', ''), 80)]",
     "fw2_interface1_pip_name": "[take(replace(concat(parameters('FW2-Name'),'-nic1-pip', variables('global_var_appendedString')), ' ', ''), 80)]",
     "fw2_interface0_pip_id": { "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('fw2_interface0_pip_name'))]" },
     "fw2_interface1_pip_id": { "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('fw2_interface1_pip_name'))]" },
-	
+
 	"COMMENT_Linux": "Linux TEMPLATE VARIBALES",
 	"linux_interface_ip": "[parameters('Linux IP address')]",
 	"linuxCustomScript": "[concat('#cloud-config\napt_update: true\npackages:\n  - apache2')]"
 
-	
+
   },
-  
+
   "resources": [
     {
       "comments": "CREATE FIREWALL MGMT AND DATA NSGS",
@@ -674,9 +674,9 @@
         }
       }
     },
-	
-	
-	
+
+
+
     {
       "comments": "CREATE VIRTUAL NETWORK WITH 4 SUBNETS",
       "type": "Microsoft.Resources/deployments",
@@ -756,9 +756,9 @@
         }
       }
 	},
-    
-	
-	
+
+
+
     {
       "comments": "CREATE FIREWALL PUBLIC LOAD BALANCER",
       "type": "Microsoft.Resources/deployments",
@@ -858,9 +858,9 @@
         }
       }
     },
-	
-	
-	
+
+
+
     {
       "comments": "CREATE FIREWALL INTERNAL LOAD BALANCER WITH HA PORTS",
       "type": "Microsoft.Resources/deployments",
@@ -944,9 +944,9 @@
         }
       }
     },
-	
-	
-	
+
+
+
     {
       "comments": "CREATE FIREWALL AVAILABILITY SET",
       "type": "Microsoft.Resources/deployments",
@@ -977,8 +977,8 @@
         }
       }
     },
-	
-	
+
+
     {
       "comments": "CREATE FW1 WITH INTERFACES PLUS HA2",
       "type": "Microsoft.Resources/deployments",
@@ -1132,7 +1132,7 @@
                 "tapConfigurations": []
               }
             },
-			
+
 			{
               "type": "Microsoft.Network/networkInterfaces",
               "name": "[variables('fw1_interface3_name')]",
@@ -1160,9 +1160,9 @@
                 },
                 "tapConfigurations": []
               }
-            },			
-			
-			
+            },
+
+
             {
               "type": "Microsoft.Compute/virtualMachines",
               "name": "[variables('fw1_computerName')]",
@@ -1240,8 +1240,8 @@
         }
       }
     },
-	
-	
+
+
     {
       "comments": "CREATE FW2 WITH INTERFACES PLUS HA2",
       "type": "Microsoft.Resources/deployments",
@@ -1500,12 +1500,12 @@
         }
       }
     },
-	
-	
-	
-	
 
-		
+
+
+
+
+
 	{
       "comments": "CREATE LINUX",
       "type": "Microsoft.Resources/deployments",
@@ -1522,7 +1522,7 @@
           "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
           "contentVersion": "1.0.0.0",
           "resources": [
-	
+
         {
               "type": "Microsoft.Network/networkInterfaces",
               "name": "networkInterface_linux",
@@ -1550,10 +1550,10 @@
                 },
                 "tapConfigurations": []
               }
-			  },	
-	
-	
-	
+			  },
+
+
+
 	{
             "comments": "CREATE LINUX VM WITH INTERFACE",
 			"type": "Microsoft.Compute/virtualMachines",
@@ -1592,7 +1592,7 @@
                     "computerName": "LinuxSRV",
                     "adminUsername": "[variables('global_fw_adminUsername')]",
                     "adminPassword": "[variables('global_fw_adminPassword')]",
-                    
+
 					"linuxConfiguration": {
                         "disablePasswordAuthentication": false,
                         "provisionVMAgent": true
@@ -1600,7 +1600,7 @@
                     "secrets": [],
                     "allowExtensionOperations": true
                     },
-					
+
                 "networkProfile": {
                     "networkInterfaces": [
                         {
@@ -1620,22 +1620,21 @@
                 "product": "apache-web-server-with-ubuntu-18-04-lts-cw"
             }
         }
-	
-	
-	
+
+
+
       		]
         }
       }
     }
 
   ],
-  
+
    "outputs": {
         "publicIpAddress": {
             "type": "string",
             "value": "[resourceId(variables('publicLb_resource_group'), 'Microsoft.Network/publicIPAddresses', variables('publicLb_pip_name'))]"
         }
-    } 
-  
+    }
+
   }
-  
